@@ -1,0 +1,91 @@
+<div class="panel panel-info" style="margin-top: 5%;margin-left:10%;width: 70%;height: auto">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{title}}</h3>
+  </div>
+  <div class="panel-body">
+    <form [formGroup]="formModel" class="form-horizontal">
+      <input hidden formControlName="id" />
+      <div class="form-group" [ngClass]="{'has-error': formErrors.userName }">
+        <label class="control-label col-sm-2" for="inputSuccess"> User name</label>
+        <div class="col-sm-6">
+        <input type="text" class="form-control" id="inputSuccess" formControlName="userName" placeholder="Enter ...">
+        </div>
+        <span class="help-block col-sm-4"
+              *ngIf="formErrors.userName">
+          {{formErrors.userName}}
+        </span>
+        <span class="help-block col-sm-4"
+              *ngIf="checkName">
+          {{checkName}}
+        </span>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error': formErrors.email }">
+        <label class="control-label col-sm-2" for="inputSuccess"> email
+        </label>
+        <div class="col-sm-6">
+        <input type="text" class="form-control" id="inputSuccess" [readonly]="readFlag" formControlName="email" placeholder="Enter ...">
+        </div>
+        <span class="help-block col-sm-4"
+              *ngIf="formErrors.email">
+          {{formErrors.email}}
+    </span>
+        <span class="help-block col-sm-4"
+              *ngIf="checkEmail">
+          {{checkEmail}}
+    </span>
+      </div>
+
+      <div class="form-group" [ngClass]="{'has-error': formErrors.password }">
+        <label class="control-label col-sm-2" for="inputSuccess"> password
+        </label>
+        <div class=" col-sm-6">
+        <input type="text" class="form-control" id="inputSuccess" formControlName="password" placeholder="Enter ...">
+      </div>
+        <span class="help-block col-sm-4"
+              *ngIf="formErrors.password">
+          {{formErrors.password}}
+         </span>
+      </div>
+      <!-- select -->
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="inputSuccess">Role</label>
+        <div class="col-sm-6">
+          <select formControlName="role" class="form-control">
+            <option value="1" selected>Admin</option>
+            <option value="2">Center Manager</option>
+            <option value="3">Sit Manager</option>
+          </select>
+        </div>
+        <span class="help-block col-ms-4"
+              *ngIf="formErrors.role">
+          {{formErrors.role}}
+          </span>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="inputSuccess">Status</label>
+        <div class="col-sm-6">
+          <select formControlName="status" class="form-control">
+            <option value="0" selected>in use</option>
+            <option value="1">freeze</option>
+          </select>
+        </div>
+        <span class="help-block col-ms-4"
+              *ngIf="formErrors.status">
+          {{formErrors.status}}
+          </span>
+        <span class="help-block col-ms-4"
+              *ngIf="resultError">
+          {{resultError}}
+           </span>
+      </div>
+    </form>
+    <div class="col-md-6 col-md-offset-2">
+      <button type="submit" class="btn btn-default" (click)="backList()">Cancel</button>
+      <button type="submit" class="btn btn-info pull-right" (click)="onSubmit()" [disabled]="formModel.invalid">Submit</button>
+    </div>
+  </div>
+</div>
+
+
+
+

@@ -1,0 +1,15 @@
+  <input class="form-control " id="inputWarning" type="text"
+         [formControl]="autocompleteSearch"
+         (focus)="onInputFocused($event)"
+         (keyup)="navigateByKey($event)"
+         #textInput placeholder="Enter...">
+  <ul class="list" [hidden]="hide"
+      (mouseout)="onHighlightItem(-1)"
+      #itemList>
+    <li [class.highlighted]="highlighted === $index"
+        *ngFor="let item of list; let $index = index"
+        (click)="onSelectItem($event, item)"
+        (mouseover)="onHighlightItem($index)">
+      {{ item}}
+    </li>
+  </ul>

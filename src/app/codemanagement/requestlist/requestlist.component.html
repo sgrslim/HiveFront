@@ -1,0 +1,102 @@
+<div class="user-table-container" [@flyIn]="'active'">
+
+  <h2><span class="fa fa-pencil-square-o"></span> Request list</h2>
+
+  <div class="panel panel-danger">
+    <div class="panel-heading">
+      <div>
+        <button class="btn btn-success" type="button" (click)="goToAdd()"><i class="glyphicon glyphicon-plus" aria-hidden="true"></i>Create
+          Request
+        </button>
+        <button class="btn btn-default pull-right" [disabled]="refreshFlag" type="button" (click)="refresh()"><i class="fa fa-refresh" aria-hidden="true"></i> Refresh</button>
+        <a data-toggle="collapse" data-parent="#accordion"
+           href="#collapseThree">
+          <button class="btn btn-success col-sm-offset-1" type="button">
+            <i class="fa fa-search" aria-hidden="true"></i> Make Search
+          </button>
+        </a>
+        <!--</div>-->
+        <div id="collapseThree" class="panel-collapse collapse">
+          <div class="panel-body">
+            <div class="panel  panel-info">
+              <div class="panel-body">
+                <form class="form-horizontal" role="form" [formGroup]="formModel">
+                  <div class="row">
+                    <div class="form-group col-md-6">
+                      <label for="firstname" class="col-sm-4 control-label">Order id:</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" id="firstname" formControlName="orderId" placeholder="Enter...">
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" [disabled]="searchFlag" type="button" (click)="onSubmit()"><i class="fa fa-search" aria-hidden="true"></i>Search</button>
+                    </span>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="user-item-container">
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th style="width: 10px">#</th>
+                <th>Request ID</th>
+                <th>Order ID</th>
+                <th>Request codes count</th>
+                <th>Site manager name</th>
+                <th>Update time</th>
+                <th>Status</th>
+                <th>Operation</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let request of requestList;let i=index;">
+                <td>{{i+1}}</td>
+                <td>{{request.requestId}}</td>
+                <td>{{request.orderId}}</td>
+                <td>{{request.requestCount}}</td>
+                <td>{{request.manager}}</td>
+                <td>{{request.updateTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                <td>
+                  <app-requeststaus [status]="request.status"></app-requeststaus>
+                </td>
+                <td>
+                  <app-requesttagcomponent [flag]="request.status" [rid]="request.requestId">
+                    <!-- <a class="btn btn-warning btn-xs"  (click)="approve(request.requestId)"><span class="glyphicon glyphicon-ok"></span>Handle</a>
+                     <a class="btn btn-danger btn-xs" (click)="cancle(request.requestId)"><span class="glyphicon glyphicon-remove"></span>Deny</a>-->
+                  </app-requesttagcomponent>
+                </td>
+
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row pull-right">
+        <pagination [boundaryLinks]="true" [totalItems]="totalItems" [(ngModel)]="currentPage" [itemsPerPage]="itemsPerPage"
+                    [maxSize]="5"
+                    class="pagination-sm"
+                    (pageChanged)="pageChanged($event)"
+                    previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+        </pagination>
+
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+

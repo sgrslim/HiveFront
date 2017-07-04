@@ -1,0 +1,13 @@
+.requesting{
+  background: yellow;
+}
+.generating{
+  background: green;
+}
+.finish{
+  /*background: grey;*/
+}
+.rejected{
+  background: red;
+}
+

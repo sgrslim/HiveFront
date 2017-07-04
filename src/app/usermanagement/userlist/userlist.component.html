@@ -1,0 +1,101 @@
+<div class="user-table-container" [@flyIn]="'active'">
+
+    <h2><span class="fa fa-user"></span> User list</h2>
+
+  <div class="panel panel-danger">
+    <div class="panel-heading">
+      <div>
+        <button class="btn btn-success" type="button" (click)="goToAdd()"><i class="glyphicon glyphicon-plus" aria-hidden="true"></i>Create
+          User
+        </button>
+        <a data-toggle="collapse" data-parent="#accordion"
+           href="#collapseThree">
+          <button class="btn btn-success col-sm-offset-1" type="button">
+            <i class="fa fa-search" aria-hidden="true"></i> Make Search
+          </button>
+        </a>
+        <!--</div>-->
+        <div id="collapseThree" class="panel-collapse collapse">
+          <div class="panel-body">
+            <div class="panel  panel-info">
+              <div class="panel-body">
+                <form class="form-horizontal" role="form" [formGroup]="formModel">
+                  <div class="row">
+                    <div class="form-group col-md-3">
+                      <label for="firstname" class="col-sm-4 control-label">UserName:</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" id="firstname" formControlName="userName" placeholder="Enter...">
+                      </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                      <label for="firstname" class="col-sm-4 control-label">Email:</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" id="firstname" formControlName="email" placeholder="Enter...">
+                      </div>
+                    </div>
+                    <div class="form-group col-md-2">
+                      <button class="btn btn-default" [disabled]="searchFlag" type="button" (click)="onSubmit()"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+                    </div>
+
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th style="width: 10px">#</th>
+                <th>User name</th>
+                <th>email</th>
+                <th>Status</th>
+                <th>Update time</th>
+                <th>Operation</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let user of userList;let i=index;">
+                <td>{{i+1}}</td>
+                <td>{{user.userName}}</td>
+                <td>{{user.email}}</td>
+                <td>
+                  {{user.status==0?"In use":"freeze"}}
+                </td>
+                <td>{{user.updateTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                <td>
+                  <a class="btn btn-warning btn-xs" (click)="goUpdate(user.id)"><span class="glyphicon glyphicon-ok"></span>update</a>
+                </td>
+
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+      <!-- style="margin-left:1% ;position: fixed;bottom: 0px;"-->
+      <div class="row pull-right">
+        <pagination [boundaryLinks]="true" [totalItems]="totalItems" [(ngModel)]="currentPage" [itemsPerPage]="itemsPerPage"
+                    [maxSize]="5"
+                    class="pagination"
+                    (pageChanged)="pageChanged($event)"
+                    previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+        </pagination>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>
+

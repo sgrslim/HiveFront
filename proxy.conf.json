@@ -1,0 +1,10 @@
+{
+  "/ssoApi": {
+    "target": "http://localhost:8088",
+    "secure":true
+  },
+  "/api":{
+    "target": "http://localhost:8081",
+    "secure":true
+  }
+}

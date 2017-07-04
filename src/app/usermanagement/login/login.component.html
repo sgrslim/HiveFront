@@ -1,0 +1,111 @@
+<div class="user-login-container" style="margin-top: 8%" >
+  <div class="login-logo">
+   <h2><a href="#"><b>Hive</b> Backoffice</a></h2>
+  </div>
+  <!-- /.login-logo -->
+  <div class="panel-body col-md-offset-2">
+    <p class="login-box-msg col-md-offset-2">Sign in to start your session</p>
+
+    <form [formGroup]="formModel" >
+      <div class="row">
+      <div class="form-group col-md-4 col-md-offset-2" [ngClass]="{'has-error': formErrors.email }">
+        <div class="form-group has-feedback ">
+          <input formControlName="email"  type="email" class="form-control col-md-2" placeholder="Email">
+          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        </div>
+        <span class="help-block"
+              *ngIf="formErrors.email">
+          {{formErrors.email}}
+        </span>
+
+      </div>
+      </div>
+      <div class="row">
+      <div class="form-group col-md-4 col-md-offset-2"
+           [ngClass]="{'has-error': formErrors.password }">
+        <div class="form-group has-feedback">
+          <input formControlName="password"  type="password" class="form-control col-md-2" placeholder="Password">
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+        <span class="help-block"
+              *ngIf="formErrors.password">
+          {{formErrors.password}}
+        </span>
+
+      </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-4 col-md-offset-2" [ngClass]="{'has-error':errorMessage}">
+        <span class="help-block"
+              *ngIf="errorMessage">
+          {{errorMessage}}
+        </span>
+
+        </div>
+      </div>
+        <div class="col-md-2 col-md-offset-2">
+          <div class="checkbox">
+            <label>
+              <input formControlName="rememberMe" type="checkbox"> Remember Me
+            </label>
+          </div>
+        </div>
+        <!-- /.col -->
+        <div class="col-md-2 ">
+          <button type="submit" (click)="login($event)" [disabled]="formModel.invalid"
+                  class="btn btn-primary btn-block btn-flat">Sign In
+          </button>
+        </div>
+        <!-- /.col -->
+    </form>
+
+
+    <!--<a href="#">I forgot my password</a><br>-->
+    <a routerLink="/register" class="text-center col-md-offset-2">Register a new account</a>
+
+  </div>
+  <!-- /.login-box-body -->
+</div>
+
+
+<!--<div class="user-login-container" [@fadeIn]>-->
+  <!--<div class="panel panel-default">-->
+    <!--<div class="panel-heading">-->
+      <!--<h3 class="panel-title">{{'userLogin.userLogin' | translate}}</h3>-->
+    <!--</div>-->
+    <!--<div class="panel-body">-->
+      <!--<form #form="ngForm" (ngSubmit)="form.form.valid && doLogin()" novalidate class="form-horizontal" role="form">-->
+        <!--<div class="form-group" [ngClass]="{ 'has-error': form.submitted && !userName.valid }">-->
+          <!--<label class="col-sm-2 control-label">用户名：</label>-->
+          <!--<div class="col-sm-10">-->
+            <!--<input required name="userName" [(ngModel)]="user.userName" #userName="ngModel" type="text" class="form-control" placeholder="请输入用户名...">-->
+            <!--<div *ngIf="form.submitted && !userName.valid" class="text-danger">用户名必须输入！</div>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group" [ngClass]="{ 'has-error': form.submitted && !password.valid }">-->
+          <!--<label class="col-sm-2 control-label">密码：</label>-->
+          <!--<div class="col-sm-10">-->
+            <!--<input required minlength="8" [(ngModel)]="user.password" name="password" #password="ngModel" type="password" class="form-control" placeholder="请输入密码...">-->
+            <!--<div *ngIf="form.submitted && !password.valid" class="text-danger">密码必须输入,至少要8位！</div>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+          <!--<div class="col-sm-offset-2 col-sm-10">-->
+            <!--<div class="checkbox">-->
+              <!--<label>-->
+                <!--<input name="remeberMe" type="checkbox" [(ngModel)]="user.remeberMe" #remeberMe="ngModel">记住我-->
+              <!--</label>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div *ngIf="error" class="col-sm-offset-2 col-sm-10 alert alert-danger">{{error}}</div>-->
+        <!--<div class="form-group">-->
+          <!--<div class="col-sm-offset-2 col-sm-10">-->
+            <!--<button type="submit" class="btn btn-success">登录</button>-->
+            <!--<button type="button" class="btn btn-danger" (click)="forgetPwd()">忘记密码？</button>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</form>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->

@@ -1,0 +1,92 @@
+<div class="user-table-container" [@flyIn]="'active'">
+  <h2>     <span class="fa fa-users"></span> Customer list</h2>
+
+
+  <div class="panel panel-danger">
+    <div class="panel-heading">
+      <div>
+        <button class="btn btn-success" type="button" (click)="goToAdd()"><i class="glyphicon glyphicon-plus" aria-hidden="true"></i>Create
+          Customer
+        </button>
+        <a data-toggle="collapse" data-parent="#accordion"
+           href="#collapseThree">
+          <button class="btn btn-success col-sm-offset-1" type="button">
+            <i class="fa fa-search" aria-hidden="true"></i> Make Search
+          </button>
+        </a>
+        <!--</div>-->
+        <div id="collapseThree" class="panel-collapse collapse">
+          <div class="panel-body">
+            <div class="panel  panel-info">
+              <div class="panel-body">
+                <form class="form-horizontal" role="form" [formGroup]="formModel">
+                  <div class="row">
+                    <div class="form-group col-md-6">
+                      <label for="firstname" class="col-md-4 control-label">Customer Simple Name:</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" id="firstname" formControlName="customerSimpleName" placeholder="Enter...">
+                      </div>
+                    </div>
+
+                    <div class="form-group col-md-2">
+                      <button class="btn btn-default" type="button" [disabled]="searchFlag" (click)="onSubmit()"><i class="fa fa-search" aria-hidden="true"></i>Search</button>
+                    </div>
+
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="user-item-container">
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th style="width: 10px">#</th>
+                <th>Customer name</th>
+                <th>Customer simple name</th>
+                <th>del</th>
+                <th>addr</th>
+                <th>contactName</th>
+                <th>createTime</th>
+                <th>Operation</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let customer of customerList;let i=index;">
+                <td>{{i+1}}</td>
+                <td>{{customer.customerName}}</td>
+                <td>{{customer.customerSimpleName}}</td>
+                <td>{{customer.tel}}</td>
+                <td>{{customer.addr}}</td>
+                <td>{{customer.contactName}}</td>
+                <td>{{customer.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                <td>
+                  <a class="btn btn-warning btn-xs"  (click)="goUpdate(customer.customerId)"><span class="glyphicon glyphicon-ok"></span>update</a>
+                </td>
+
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+      <div class="row pull-right">
+        <pagination [boundaryLinks]="true" [totalItems]="totalItems" [(ngModel)]="currentPage" [itemsPerPage]="itemsPerPage"
+                    [maxSize]="5"
+                    class="pagination-sm"
+                    (pageChanged)="pageChanged($event)"
+                    previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+        </pagination>
+      </div>
+
+    </div>
+  </div>
+</div>
+

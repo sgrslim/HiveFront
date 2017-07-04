@@ -1,0 +1,27 @@
+<div class="left_col scroll-view">
+  <div class="navbar nav_title" style="border: 0;">
+    <a href="javascript:(0)" class="site_title"><img style="width: 200px;height: 80px;" src="/assets/imgs/logo.jpg"/></a>
+  </div>
+  <div class="clearfix"></div>
+
+  <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+    <div class="menu_section">
+      <ul class="nav side-menu">
+
+        <li *ngFor="let menu of menus" >
+          <a><i class="{{menu.menuStyle}}"></i>{{menu.name}} <span class="fa fa-chevron-down"></span></a>
+          <ul *ngFor="let submenu of menu.subMenus" class="nav child_menu">
+            <li class="treeview-menu"><a href="javascript:void(0);" (click)="navSub(submenu)">{{submenu.name}}</a></li>
+
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="pull-down" style="margin-left:1% ;position: fixed;bottom: 0px;" >
+    <strong>Copyright &copy; 2017 GMKW.</strong>
+  </div>
+  <div class="clearfix"></div>
+</div>
+
+

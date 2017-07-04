@@ -1,0 +1,74 @@
+<div class="register-box" style="margin-top: 5%">
+  <div class="register-logo">
+    <a href="#"><b>Hive</b> Backoffice</a>
+  </div>
+
+  <div class="register-box-body">
+    <p class="login-box-msg col-md-offset-3">Register a new account</p>
+
+    <form [formGroup]="formModel">
+      <div class="row">
+        <div class=" col-md-4 col-md-offset-3 " [ngClass]="{'has-error': formErrors.userName }">
+          <div class="form-group has-feedback">
+            <input type="text" class="form-control" formControlName="userName" placeholder="Full name">
+            <span class="glyphicon glyphicon-user form-control-feedback "></span>
+            <span class="help-block"
+                  *ngIf="formErrors.userName">
+          {{formErrors.userName}}
+        </span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+      <div class=" col-md-4 col-md-offset-3" [ngClass]="{'has-error': formErrors.email }">
+      <div class="form-group has-feedback">
+        <input type="email" class="form-control" formControlName="email" placeholder="Email">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        <span class="help-block"
+              *ngIf="formErrors.email">
+          {{formErrors.email}}
+        </span>
+      </div>
+      </div>
+      </div>
+      <div class="row">
+      <div class=" col-md-4 col-md-offset-3" [ngClass]="{'has-error': formErrors.password }">
+      <div class="form-group has-feedback">
+        <input type="password" class="form-control" formControlName="password" placeholder="Password">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        <span class="help-block"
+              *ngIf="formErrors.password">
+          {{formErrors.password}}
+        </span>
+      </div>
+      </div>
+      </div>
+      <div class="row">
+      <div class=" col-md-4 col-md-offset-3" >
+      <div class="form-group has-feedback" [ngClass]="{'has-error':rPasswordMessage}">
+        <input type="password" class="form-control" (keyup)="show()" formControlName="rPassword" placeholder="Retype password">
+        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+        <span class="help-block"
+              *ngIf="rPasswordMessage">
+          {{rPasswordMessage}}
+        </span>
+      </div>
+      </div>
+      </div>
+      <div class="row">
+
+        <!-- /.col -->
+        <div class="col-md-2 col-md-offset-5">
+          <button type="submit" (click)="register($event)" [disabled]="formModel.invalid" class="btn btn-primary btn-block btn-flat">Register</button>
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
+
+
+
+    <a href="login.html" class="text-center col-md-offset-3">I already have a account</a>
+  </div>
+  <!-- /.form-box -->
+</div>
+<!-- /.register-box -->
